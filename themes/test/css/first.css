@@ -1,147 +1,159 @@
-/*
- * File ini berisi CSS untuk tema 'default' yang diambil dari theme2.download di
- * http://tambahrejo.web.id/first/artikel/201 susunan Augush Harry & Dwi Asih Wahyu Saptoto
- * CSS ini memakai image:
- *     - latar belakang body yang ditempatkan di themes/default/css/images/img1.jpg
- *
- * first.css ini berisi perubahan untuk styles yang ada di assets/front/css/first.css
- *
-*/
-
-html{
-  <param name="quality" value="high" />
-  <embed src="http://www.4shared.com/embed/487028039/72ce44cf/preview.swf" quality="high" pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="147" height="34" ></embed>
-}
-a, a:active { text-decoration: none; background-color: inherit; color: #0404fd; }
-a:visited { text-decoration: none; background-color: inherit; color: #0404fd; }
-a:hover { text-decoration: none; background-color: inherit; color: #fd0315; }
-
 body{
-  background: url(images/img1.jpg) no-repeat center center fixed; /*warna background bodi web*/
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
+  background: #f0f0f0;
 }
 
-#maincontainer{
-  background: ; /*warna background halaman utama*/
-}
-#topsection{
-  margin-right: 9px;
-  margin-left: 6px;
-  background: #b50303; /*warna header atas/ background kepala web*/
-}
-#mainmenu{
-  margin-left: -7px;
-  width: 101.6%;
-}
-nav.navbar.navbar-inverse{
-  margin-right: -2px;
-}
-#scroller{
-	margin-top: 0px;
-  margin-left: -6px;
-  width: 101.4%;
-}
-#menu_vert2 .cycle-slideshow img { height: 88px; }
-#footer{
-  padding: 3px 0;
-  background: brown;
-}
-#footer a{color: #88fd78;}
-
-#menu_vert{
-  height: 30px;
-  border:0px solid #FFFFFF;
-  background: url(images/tb2.jpg) repeat center top;
+.footer {
+  background: #2a2730;
+  padding: 12px 0;
+  color: #99979c;
+  text-align: center;
 }
 
-#menu_vert a.dropdown-toggle{
-  padding-top: 5px;
-  height: 30px;
+.big-header {
+  margin-top: 50px;
+  background: #563d7c;
+  background: linear-gradient(to bottom,#563d7c 0,#6f5499 100%);
+  color: #fafafa;
+}
+.big-header .container {
+  position: relative;
 }
 
-#mainmenu a.dropdown-toggle{
-  padding-top: 5px;
-  height: 30px;
-}
-
-#divlogo-txt {
-    margin-left: 85px;
-}
-#divlogo-img{
-  float: left;
+.big-header__logo {
   width: 100px;
-  padding: 3px;
-  margin-left: -103%;
-  text-align:center;}
-#divlogo-img img{height:100px;margin-top:1px;}
-
-#siteTitle h1{font-family: "Arial Black", Gadget, sans-serif;font-size:21px;color:white;font-weight:bold;} /* merubah font judul web ( desa ) */
-#siteTitle h2{
-  font-family: "Arial Black", Gadget, sans-serif;
-  font-size:15px;color:white;
-  font-weight:bold;
-  margin-top: 0px;
-} /* mengubah font judul web ( kecamatan dan kabupaten ) */
-#siteTitle h3{
-  font-family: "comic sans", Gadget, sans-serif;
-  font-size:11px;
-  color:yellow;
-  font-weight:bold;
-  margin-top: 0px;
-} /* mengubah font judul web ( alamat ) */
-
-#mainmenu {
-  background: url(images/tb.jpg) repeat center top;
+  position: absolute;
+  padding: 6px;
+  top: 20px;
+  left: 20px;
 }
 
-.box {
-  background: #dffed9;
-}
-.box.box-solid.box-danger > .box-header {
-  background: #fe0012;
-  background-color: #fe0012;
+.big-header__desa {
+  padding: 20px 0 20px 120px;
+  min-height: 120px;
 }
 
-/*
- * Menampilkan Artikel mengganti background artikel dll
- * */
-.artikel .sampul img {margin-left: auto; margin-right: auto;}
-.artikel{margin-top: 1em;padding:.8em 1em 1px 1em;background-color:#8abffb;}
-.artikel .judul{font-size:1.25em;color:#fd070d;line-height:1em;margin-bottom:.5em;}
-.artikel .kecil{font-size:.8em;color:#040404;font-style:italic;font-weight:400;margin-bottom:.5em;}
-.artikel .teks{font-size:1em; margin-right:.5em;}
-.artikel .sampul{margin: 1em 0; display:block;width:100%;}
-.artikel .teks img{margin-right: 7px; margin-bottom: 5px; float: left;width:260px;background:#ccc;border:solid 1px #aaa;padding:.5em;}
-.gb{border-bottom:solid 2px #eee;}
-.btn-block {
-    display: block;
-    width: 100%;
-    margin-top: 5px;
-}
-/*
- * Ubah penampilan navbar bootstrap
- */
-
-/* Menu beranda */
-#menu-left ul.nav > li > a{
-  padding-top: 5px;
-  padding-bottom: 0px;
+.desa__nama {
+  margin: 0;
+  font-size: 2em;
 }
 
-ul.nav.navbar-nav {
-  text-transform: none;
+.desa__kecamatan {
+  margin: 8px 0;
+  font-size: 1.4em;
 }
 
-#ul-menu {
-    list-style-type: square;
-  margin-left: 20px;
-  margin-bottom: 0px;
-}
-ul.submenu {
-    list-style: disc;
-    margin-left: 20px;
+.desa__alamat {
+  margin: 0;
+  font-size: 1em;
 }
 
+.main-content {
+  padding: 20px 0;
+}
+
+.card-simple {
+  background: #fafafa;
+  padding: 24px 16px;
+  margin-bottom: 12px;
+}
+.card-simple__title {
+  margin-bottom: 16px;
+}
+.card-simple__title span {
+  display: inline-block;
+  padding: 4px 8px 4px 0;
+  border-bottom: 2px solid #563d7c;
+  margin-bottom: 4px;
+  font-size: 1.6em;
+}
+
+.img-fit {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.card-artikel {
+  background: #fafafa;
+  padding: 24px;
+  margin-bottom: 8px;
+  position: relative;
+  border-bottom: 4px solid #0091EA;
+}
+
+.card-artikel__main {
+  position: relative;
+  min-height: 200px;
+}
+
+.card-artikel__gambar {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.card-artikel__text {
+  padding-left: 220px;
+}
+.card-artikel__title {
+  margin-bottom: 8px;
+}
+.card-artikel__title a {
+  color: #444;
+  font-size: 1.5em;
+  font-weight: bold;
+  line-height: 1;
+}
+.card-artikel__tgl {
+  color: #999;
+  margin: 6px 0;
+  font-size: 0.8em;
+}
+.card-artikel__abstrak {
+  color: #555;
+  margin-bottom: 8px;
+}
+.card-artikel__penulis {
+  color: #999;
+}
+
+.main-title {
+  background: #fafafa;
+  padding: 20px;
+  border-left: 4px solid #0091EA;
+  font-weight: bold;
+  margin: 0 0 12px 0;
+  font-size: 2em;
+}
+
+.komentar-container {
+  padding: 12px 0;
+}
+.box-komentar {
+  margin-bottom: 16px;
+  padding: 12px;
+  position: relative;
+}
+.box-komentar::after {
+  position: absolute;
+  width: 30%;
+  height: 2px;
+  content: '';
+  bottom: 0;
+  background: #999;
+}
+.box-komentar:nth-child(even) {
+  background: #f0f0f0;
+}
+.box-komentar__author {
+  font-weight: bold;
+  line-height: 1;
+}
+.box-komentar__time {
+  color: #999;
+  font-size: 0.8em;
+  margin-bottom: 4px;
+}
+.box-komentar__body {
+  padding: 0 16px;
+}
