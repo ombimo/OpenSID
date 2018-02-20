@@ -1,0 +1,1 @@
+sass --watch D:\xampp\htdocs\OpenSID\themes\test\css\_sass:D:\xampp\htdocs\OpenSID\themes\test\css --style compressed

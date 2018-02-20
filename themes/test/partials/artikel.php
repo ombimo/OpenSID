@@ -1,23 +1,46 @@
 <?php  if(!defined('BASEPATH')) exit('No direct script access allowed'); ?>
-
-
-
-
+<?php if($single_artikel["id"]){ ?>
 <div class="artikel-detail">
   <div class="card-simple">
     <h2 class="artikel-detail__judul"><?= $single_artikel['judul'];?></h2>
     <h3 class="kecil">
-            <i class="fa fa-user"></i><?= $single_artikel['owner'] ;?>
-            <i class="fa fa-clock-o"></i><?= tgl_indo2($single_artikel['tgl_upload']); ?>
-
-          <?php if (trim($single_artikel['kategori']) != '') { ?>
-                <i class='fa fa-tag'></i> <a href="<?= site_url("first/kategori/$single_artikel[id_kategori]") ,"'>$single_artikel[kategori]</a>";
-          <?php }//end kategori ?>
+      <i class="fa fa-user"></i><?= $single_artikel['owner'] ;?>
+      <i class="fa fa-clock-o"></i><?= tgl_indo2($single_artikel['tgl_upload']); ?>
+    <?php if (trim($single_artikel['kategori']) != '') { ?>
+      <i class='fa fa-tag'></i> <a href="<?= site_url('first/kategori/'.$single_artikel['id_kategori']); ?>">
+      <?= $single_artikel['kategori'] ;?></a>
+      <?php }//end kategori ?>
         </h3>
   </div>
   <div class="card-simple">
-    <?= $single_artikel['isi']; ?>
+
+    <?php if($single_artikel['gambar']!='') {
+      if(is_file(LOKASI_FOTO_ARTIKEL."sedang_".$single_artikel['gambar'])) { ?>
+        <div class="artikel-detail__sampul">
+          <a class="group2" href="<?= AmbilFotoArtikel($single_artikel['gambar'],'sedang') ?>">
+            <img src="<?= AmbilFotoArtikel($single_artikel['gambar'],'sedang');?>"
+              alt="<?= $single_artikel['judul'];?>"></a>
+        </div>
+    <?php } }//end jika ada gambar dan file gambar ada ?>
+      <div class="artikel-detail__isi"><?= $single_artikel['isi']; ?></div>
+    <?php if($single_artikel['dokumen']!=''){
+            if(is_file(LOKASI_DOKUMEN.$single_artikel['dokumen'])) { ?>
+        <p>Dokumen Lampiran : <a href="<?= base_url().LOKASI_DOKUMEN.$single_artikel['dokumen'];?>"><?= $single_artikel['link_dokumen'];?></a></p>
+    <?php } }//end jika ada dokumen lampiran ?>
+    <div class="clearfix">
+    <?php for ($i=1; $i < 4 ; $i++) {
+      $gambar_tambahan = $single_artikel['gambar'.$i];
+      if($gambar_tambahan!='') {
+        if(is_file(LOKASI_FOTO_ARTIKEL."sedang_".$gambar_tambahan)) { ?>
+          <div class="artikel-detail__gambar-tambahan">
+            <a class="group2" href="<?= AmbilFotoArtikel($gambar_tambahan,'sedang') ?>">
+              <img src="<?= AmbilFotoArtikel($gambar_tambahan,'sedang');?>"
+                alt="<?= $single_artikel['judul'];?>"></a>
+          </div>
+    <?php } } } //end loop gambar tambahan?>
+    </div>
   </div>
+
   <div class="card-simple">
     <div class="card-simple__title"><span>Share</span></div>
     <div class="js-share"></div>
@@ -115,166 +138,11 @@
       </div>
     </div>
   <?php } //end if boleh komentar?>
-
-
 </div>
+<?php } else {//end if ada artikel ?>
+  <div class="card-simple bs-callout bs-callout-danger">
+    <h4>Maaf, data tidak ditemukan</h4>
+    <p>Anda telah terdampar di halaman yang datanya tidak ada lagi di web ini. Mohon periksa kembali, atau laporkan kepada kami.</p>
+  </div>
 
-<?php
-/*
-echo "
-    <div class=\"callout callout-danger\">
-        <h4>Pesan</h4>
-        <p>Kontent:</p>
-        <p>".$single_artikel["id"]."</p>
-    </div>
-
-";
-
-*/
-
-if($single_artikel["id"]){
-    echo "
-    <div class=\"artikel\" id=\"artikel-".$single_artikel["judul"]."\">
-        <h2 class=\"judul\">".$single_artikel["judul"]."</h2>
-        <h3 class=\"kecil\">
-            <i class=\"fa fa-user\"></i> ".$single_artikel['owner']."
-            <i class=\"fa fa-clock-o\"></i> ".tgl_indo2($single_artikel['tgl_upload']);
-            if (trim($single_artikel['kategori']) != '') {
-                echo " <i class='fa fa-tag'></i> <a href='", site_url("first/kategori/$single_artikel[id_kategori]") ,"'>$single_artikel[kategori]</a>";
-            }
-        echo "
-        </h3>";
-
-            if($single_artikel['gambar']!=''){
-                if(is_file(LOKASI_FOTO_ARTIKEL."sedang_".$single_artikel['gambar'])) {
-                    echo "<div class=\"sampul\"><a class=\"group2\" href=\"".AmbilFotoArtikel($single_artikel['gambar'],'sedang')."\" title=\"\">
-                    <img src=\"".AmbilFotoArtikel($single_artikel['gambar'],'sedang')."\" /></a></div>";
-                }
-            }
-        echo "
-        <div class=\"teks\"></div>";
-
-            if($single_artikel['dokumen']!=''){
-                if(is_file(LOKASI_DOKUMEN.$single_artikel['dokumen'])) {
-                    echo "<p>Dokumen Lampiran : <a href=\"".base_url().LOKASI_DOKUMEN.$single_artikel['dokumen']."\" title=\"\">".$single_artikel['link_dokumen']."</a></p><br/>";
-                }
-            }
-            if($single_artikel['gambar1']!=''){
-                if(is_file(LOKASI_FOTO_ARTIKEL."sedang_".$single_artikel['gambar1'])) {
-                    echo "<div class=\"sampul2\"><a class=\"group2\" href=\"".AmbilFotoArtikel($single_artikel['gambar1'],'sedang')."\" title=\"\">
-                    <img src=\"".AmbilFotoArtikel($single_artikel['gambar1'],'sedang')."\" /></a></div>";
-                }
-            }
-            if($single_artikel['gambar2']!=''){
-                if(is_file(LOKASI_FOTO_ARTIKEL."sedang_".$single_artikel['gambar2'])) {
-                    echo "<div class=\"sampul2\"><a class=\"group2\" href=\"".AmbilFotoArtikel($single_artikel['gambar2'],'sedang')."\" title=\"\">
-                    <img src=\"".AmbilFotoArtikel($single_artikel['gambar2'],'sedang')."\" /></a></div>";
-                }
-            }
-            if($single_artikel['gambar3']!=''){
-                if(is_file(LOKASI_FOTO_ARTIKEL."sedang_".$single_artikel['gambar3'])) {
-                    echo "<div class=\"sampul2\"><a class=\"group2\" href=\"".AmbilFotoArtikel($single_artikel['gambar3'],'sedang')."\" title=\"\">
-                    <img src=\"".AmbilFotoArtikel($single_artikel['gambar3'],'sedang')."\" /></a></div>";
-                }
-            }
-        echo "
-        <div class=\"form-group\" style=\"clear:both;\">
-            <ul id=\"pageshare\" title=\"bagikan ke teman anda\" class=\"pagination\">
-                <li class=\"sbutton\" id=\"fb\"><a name=\"fb_share\" href=\"http://www.facebook.com/sharer.php?u=".site_url()."first/artikel/".$single_artikel["id"]."\"><i class=\"fa fa-facebook-square\"></i>&nbsp;Share</a></li>
-                <li class=\"sbutton\" id=\"rt\"><a href=\"http://twitter.com/share\" class=\"twitter-share-button\"><i class=\"fa fa-twitter\"></i>&nbsp;Tweet</a></li>
-                <li class=\"sbutton\" id=\"gpshare\"><a href=\"https://plus.google.com/share?url=".site_url()."first/artikel/".$single_artikel["id"]."&hl=id"."\"><i class=\"fa fa-google-plus\" style=\"color:red\"></i>&nbsp;Bagikan</a></li>";
-                echo "<li class=\"sbutton\" id=\"wa_share\"><a href=\"whatsapp://send?text=".site_url()."first/artikel/".$single_artikel["id"]."\"><i class=\"fa fa-whatsapp\"style=\"color:green\"></i>&nbsp;WhatsApp</a></li>";
-        echo "
-            </ul>
-            <!--
-            <script src=\"http://static.ak.fbcdn.net/connect.php/js/FB.Share\" type=\"text/javascript\"></script>
-            <script src=\"http://platform.twitter.com/widgets.js\" type=\"text/javascript\"></script>
-            -->
-        </div>
-
-        <div class=\"form-group\">
-        ";
-        if(is_array($komentar)){
-            echo "
-            <div class=\"box box-default box-solid\">
-                <div class=\"box-header\"><h3 class=\"box-title\">Komentar atas ".$single_artikel["judul"]."</h3></div>
-                <div class=\"box-body\">";
-
-            foreach($komentar AS $data){
-                if($data['enabled']==1){
-                    echo "
-                    <div class=\"kom-box\">
-                        <div style=\"font-size:.8em;font-color:#aaa;\">
-                            <i class=\"fa fa-user\"></i> ".$data['owner']." <i class=\"fa fa-clock-o\"></i> ".tgl_indo2($data['tgl_upload'])."
-                        </div>
-                        <div>
-                            <blockquote>".$data['komentar']."</blockquote>
-                        </div>
-                    </div>";
-                }
-            }
-            echo "
-                </div>
-            </div>
-            ";
-        }elseif($single_artikel['boleh_komentar']){
-            echo "<div>Silakan tulis komentar dalam formulir berikut ini (Gunakan bahasa yang santun)</div>";
-        }
-
-        echo "
-        </div>
-            <div class=\"form-group group-komentar\">";
-        if($single_artikel['boleh_komentar']){
-            echo "
-                <div class=\"box box-default\">
-                    <div class=\"box-header\"><h3 class=\"box-title\">Formulir Komentar (Komentar baru terbit setelah disetujui Admin)</h3></div>";
-
-                    // tampilkan hanya jika 'flash_message' ada
-                    if (isset($_SESSION['validation_error']) AND $_SESSION['validation_error']) $label = 'label-danger'; else $label = 'label-info';
-                    if ($flash_message) {
-                        echo "<div class='box-header ".$label."'>$flash_message</div>";
-                    }
-                    echo "
-                    <div class=\"box-body\">
-                        <form id=\"form-komentar\" name=\"form\" action=\"".site_url("first/add_comment/".$single_artikel["id"])."\" method=POST onSubmit=\"return validasi(this)\">
-                        <table width=100%>
-                            <tr class=\"komentar nama\"><td>Nama</td><td> <input type=text name=\"owner\" maxlength=30 value=\"".(!empty($_SESSION['post']['owner']) ? $_SESSION['post']['owner'] : $_SESSION['nama'])."\"></td></tr>
-                            <tr class=\"komentar alamat\"><td>Alamat e-mail</td><td> <input type=text name=\"email\" maxlength=30 value=\"".$_SESSION['post']['email']."\"></td></tr>
-                            <tr class=\"komentar pesan\"><td valign=top>Komentar</td><td> <textarea name=\"komentar\">".$_SESSION['post']['komentar']."</textarea></td></tr>
-                            <tr class=\"captcha\"><td>&nbsp;</td>
-                                <td>
-                                    
-                                </td></tr>
-                            <tr class=\"captcha_code\"><td>&nbsp;</td><td>
-                                    
-                                </td></tr>
-                            <tr class=\"submit\"><td>&nbsp;</td><td></td></tr>
-                        </table>
-                        </form>
-                    </div>
-                </div>";
-        }else{
-            echo "
-                <span class='info'>Komentar untuk artikel ini telah ditutup.</span>
-            ";
-        };
-        echo "
-            </div>
-        </div>
-        ";
-}else{
-    echo "
-    <div class=\"artikel\" id=\"artikel-blank\">
-        <div class=\"box box-danger box-solid\">
-            <div class=\"box-header\"><h3 class=\"box-title\">Maaf, data tidak ditemukan</h3></div>
-            <div class=\"box-body\">
-                Anda telah terdampar di halaman yang datanya tidak ada lagi di web ini. Mohon periksa kembali, atau laporkan kepada kami.
-            </div>
-        </div>
-    </div>
-    ";
-}
-
-
-?>
-
+<?php } //else jika artikel tidak ada?>

@@ -43,3 +43,6 @@
     href="<?= base_url()?>themes/test/vendor/jssocials/jssocials.css"  />
     <link rel='Stylesheet' type='text/css' 
     href="<?= base_url()?>themes/test/vendor/jssocials/jssocials-theme-flat.css"  />
+
+    <script src="<?php echo base_url()?>themes/test/vendor/jquery/jquery-1.12.4.min.js"></script>
+    <script src="<?php echo base_url()?>themes/test/vendor/bootstrap/js/bootstrap.min.js"></script>
