@@ -296,7 +296,7 @@ function __construct(){
 	}
 
 	function update_anggota($p=1,$o=0,$id_kk=0,$id=0){
-		$this->rtm_model->update_anggota($id,$id_kk);
+		$this->rtm_model->update_anggota($id);
 		redirect("rtm/anggota/$p/$o/$id_kk");
 	}
 
